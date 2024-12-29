@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def cwel():
-  return render_template('index.html') # doesn't work because I didn't add templates/index.html
+  return render_template('index.html') # render templates/index.html
 
 @app.route('/api/v1/hello') # return 'hi' lol nice api bro
 def hi():
@@ -15,5 +15,5 @@ def hi():
 def cwelowskagadka():
   return 'error' # return 'error'
 
-if __name__ == '__main__':
+if __name__ == '__main__': # ok
     app.run(debug=True)
