@@ -1,4 +1,9 @@
 from flask import Flask, render_template
+from datetime import datetime
+
+# hello hello hello, im VIP MTW texas patrick sigma, skibidi
+# soon brainrot pyton
+# flask so bad!!!
 
 app = Flask(__name__)
 
@@ -20,7 +25,13 @@ def cwelowskagadka():
 def list():
   return {'cwele': SHIT} # return 'SHIT' list
 
+@app.route('/api/v1/hour') # hour endpoint (system clock doesnt exist)
+def dawajgodzinepedale():
+    current_time = datetime.now()
+    current_hour = current_time.hour
+    return f'lap godzine skurwysynie: {current_hour}' # take hour sweetie
+
 
 
 if __name__ == '__main__': # ok
-    app.run(debug=True)
+    app.run(debug=True) # debuk ebok
