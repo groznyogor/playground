@@ -8,6 +8,7 @@ from datetime import datetime
 app = Flask(__name__)
 
 SHIT = ['ogur', 'gogus', 'cwel'] # nice list
+KAJA_GODEK = ['krzysiu', 'to', 'jebany', 'debil'] # kaia godek aka kaia cenat
 
 @app.route('/')
 def cwel():
@@ -31,6 +32,14 @@ def dawajgodzinepedale():
     current_hour = current_time.hour
     return f'lap godzine skurwysynie: {current_hour}' # take hour sweetie
 
+@app.route('/api/v1/say/<text>') # stolen from skibidi_gogus (dc: g0gus) and added normal, and processed text
+def cotynawijasz(text):
+    processed_text = text.upper() # big text like a mr. big balls 
+    return jsonify({"original": text, "processed": processed_text})
+
+@app.route('/api/v1/kajagodek/wymordowac') # kaja godek is the polish nigg ehm ehm.. polish woman
+def cotytamdefujesz():
+  return 'witaj, to jest wiadomosc do kai cenat.', KAJA_GODEK
 
 
 if __name__ == '__main__': # ok
