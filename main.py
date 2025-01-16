@@ -1,46 +1,74 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 from datetime import datetime
+import random
 
-# hello hello hello, im VIP MTW texas patrick sigma, skibidi
-# soon brainrot pyton
-# flask so bad!!!
+# welcome to the most brainrot flask app on earth
+# me coding at 3AM: "yes this is genius"
+# flask brainrot by groznyogor industries
 
 app = Flask(__name__)
 
-SHIT = ['ogur', 'gogus', 'cwel'] # nice list
-KAJA_GODEK = ['krzysiu', 'to', 'jebany', 'debil'] # kaia godek aka kaia cenat
+SHIT = ['ogur', 'brainrotpy']
+KAJA_GODEK = ['krzysiu', 'to', 'jebany', 'debil', 'co', 'sra', 'na', 'paste']
 
 @app.route('/')
-def cwel():
-  return render_template('index.html') # render templates/index.html
+def home():
+    # "render_template is temporary, chaos is forever"
+    return render_template('index.html') # chaos edition
 
-@app.route('/api/v1/hello') # return 'hi' lol nice api bro
+@app.route('/api/v1/hello')
 def hi():
-  return 'hi' # hi
+    return 'siemano cwelu' # no more boring "hi"
 
-@app.route('/404') # goofy ahh 404 (idk working or not)
-def cwelowskagadka():
-  return 'error', 404 # return 'error'
+@app.route('/404') # certified hood classic 404
+def error_404():
+    return 'chuja dziala, dziwi cie to?', 404
 
-@app.route('/api/v1/cwel/shit') # nice endpoint
-def list():
-  return {'cwele': SHIT} # return 'SHIT' list
+@app.route('/api/v1/cwel/shit')
+def list_shit():
+    return {'cwele': SHIT, 'count': len(SHIT)} # now with a count!!
 
-@app.route('/api/v1/hour') # hour endpoint (system clock doesnt exist)
-def dawajgodzinepedale():
+@app.route('/api/v1/hour')
+def godzina_gigachada():
     current_time = datetime.now()
     current_hour = current_time.hour
-    return f'lap godzine skurwysynie: {current_hour}' # take hour sweetie
+    current_minute = current_time.minute
+    return f'lape godzine: {current_hour}:{current_minute} (skurwysynie lap tajma)'
 
-@app.route('/api/v1/say/<text>') # stolen from skibidi_gogus (dc: g0gus) and added normal, and processed text
-def cotynawijasz(text):
-    processed_text = text.upper() # big text like a mr. big balls 
-    return jsonify({"original": text, "processed": processed_text})
+@app.route('/api/v1/say/<text>') 
+def mowi(text):
+    reversed_text = text[::-1] # mowi ale na odwrot
+    processed_text = text.upper() 
+    return jsonify({
+        "original": text,
+        "processed": processed_text,
+        "reversed": reversed_text
+    })
 
-@app.route('/api/v1/kajagodek/wymordowac') # kaja godek is the polish nigg ehm ehm.. polish woman
-def cotytamdefujesz():
-  return 'witaj, to jest wiadomosc do kai cenat.', KAJA_GODEK
+@app.route('/api/v1/kajagodek/wymordowac')
+def ultimate_message():
+    random_insult = random.choice(KAJA_GODEK)
+    return f'witaj, twoja losowa wiadomosc: "{random_insult}"'
 
+@app.route('/api/v1/random/shit') # fun endpoint
+def random_shit():
+    random_item = random.choice(SHIT)
+    return f'twoje losowe gowno to: {random_item}'
 
-if __name__ == '__main__': # ok
-    app.run(debug=True) # debuk ebok
+@app.route('/api/v1/coinflip') # now gambling is here
+def coin_flip():
+    result = random.choice(['orzel', 'reszka'])
+    return f'wynik rzutu moneta: {result} (kto przegral - cwel)'
+
+@app.route('/api/v1/counter/<int:number>')
+def licznik(number):
+    if number < 0:
+        return f'liczby ujemne? co to za bieda: {number}', 400
+    return jsonify({
+        "original": number,
+        "squared": number ** 2,
+        "cubed": number ** 3
+    })
+
+if __name__ == '__main__':
+    app.run(debug=True)
